@@ -72,41 +72,41 @@
     "show": "Show"
   },
   "buttons": {
-    "create": "Create",
-    "save": "Save",
-    "logout": "Logout",
-    "delete": "Delete",
-    "edit": "Edit",
-    "cancel": "Cancel",
-    "confirm": "Are you sure?",
-    "filter": "Filter",
-    "clear": "Clear",
-    "refresh": "Refresh",
-    "show": "Show",
-    "undo": "Undo",
-    "import": "Import",
-    "clone": "Clone",
-    "notAccessTitle": "You don't have permission to access"
+    "create": "Создать",
+    "save": "Сохранить",
+    "logout": "Выйти",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "cancel": "Отменить",
+    "confirm": "Вы уверены?",
+    "filter": "Фильтр",
+    "clear": "Очистить",
+    "refresh": "Обновить",
+    "show": "Показать",
+    "undo": "Отменить",
+    "import": "Импорт",
+    "clone": "Клонировать",
+    "notAccessTitle": "Нет доступа"
   },
-  "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
+  "warnWhenUnsavedChanges": "Вы уверены что хотите покинуть страницу? Есть несохраненные данные",
   "notifications": {
-    "success": "Successful",
-    "error": "Error (status code: {{statusCode}})",
-    "undoable": "You have {{seconds}} seconds to undo",
-    "createSuccess": "Successfully created {{resource}}",
-    "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
-    "deleteSuccess": "Successfully deleted {{resource}}",
-    "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
-    "editSuccess": "Successfully edited {{resource}}",
-    "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-    "importProgress": "Importing: {{processed}}/{{total}}"
+    "success": "Успешно",
+    "error": "Ошибка (status code: {{statusCode}})",
+    "undoable": "У вас {{seconds}} секунд на отмену",
+    "createSuccess": "{{resource}} успешно создан",
+    "createError": "Ошибка создания {{resource}} (status code: {{statusCode}})",
+    "deleteSuccess": "{{resource}} успешно удален",
+    "deleteError": "Ошибка удаления {{resource}} (status code: {{statusCode}})",
+    "editSuccess": "Успешно отредактирован {{resource}}",
+    "editError": "Ошибка редактирования {{resource}} (status code: {{statusCode}})",
+    "importProgress": "Импорт: {{processed}}/{{total}}"
   },
-  "loading": "Loading",
+  "loading": "Идет загрузка",
   "tags": {
-    "clone": "Clone"
+    "clone": "Клонировать"
   },
   "dashboard": {
-    "title": "Dashboard"
+    "title": "Дашборд"
   },
   "blog_posts": {
     "blog_posts": "Blog Posts",
@@ -140,6 +140,18 @@
     }
   },
   "table": {
-    "actions": "Actions"
+    "actions": "Действия"
+  },
+  "Department":{
+    "Department":"Департаменты",
+    "fields": {
+      "name":"Название"
+    },
+    "titles":{
+      "list": "Департаменты",
+      "create": "Создать",
+      "edit": "Редактировать",
+      "show": "Показать"
+    }
   }
 }

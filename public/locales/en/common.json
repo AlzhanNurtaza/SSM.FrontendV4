@@ -141,5 +141,17 @@
   },
   "table": {
     "actions": "Actions"
+  },
+  "Department":{
+    "Department":"Departments",
+    "fields": {
+      "name":"Name"
+    },
+    "titles":{
+      "list": "Departments",
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show"
+    }
   }
 }
