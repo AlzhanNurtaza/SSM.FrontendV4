@@ -16,11 +16,6 @@ export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<GridColumns<any>>(
         () => [
             {
-                field: "id",
-                headerName: translate("Department.fields.id"),
-                minWidth: 50,
-            },
-            {
                 field: "name",
                 flex: 1,
                 headerName: translate("Department.fields.name"),

@@ -97,7 +97,7 @@
     "createError": "Ошибка создания {{resource}} (status code: {{statusCode}})",
     "deleteSuccess": "{{resource}} успешно удален",
     "deleteError": "Ошибка удаления {{resource}} (status code: {{statusCode}})",
-    "editSuccess": "Успешно отредактирован {{resource}}",
+    "editSuccess": "{{resource}} успешно изменен",
     "editError": "Ошибка редактирования {{resource}} (status code: {{statusCode}})",
     "importProgress": "Импорт: {{processed}}/{{total}}"
   },
@@ -143,7 +143,7 @@
     "actions": "Действия"
   },
   "Department":{
-    "Department":"Департаменты",
+    "Department":"Департамент",
     "fields": {
       "name":"Название"
     },
