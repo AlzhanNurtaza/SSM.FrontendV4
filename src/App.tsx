@@ -35,6 +35,12 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
+import {
+  DepartmentList,
+  DepartmentShow,
+  DepartmentEdit,
+  DepartmentCreate
+} from "./pages/departments"
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -123,10 +129,10 @@ function App() {
                     element={<NavigateToResource resource="blog_posts" />}
                   />
                   <Route path="/departments">
-                    <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
+                    <Route index element={<DepartmentList />} />
+                    <Route path="create" element={<DepartmentCreate />} />
+                    <Route path="edit/:id" element={<DepartmentEdit />} />
+                    <Route path="show/:id" element={<DepartmentShow />} />
                   </Route>
 
                   <Route path="/blog-posts">
