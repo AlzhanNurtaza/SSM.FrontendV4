@@ -57,12 +57,22 @@ function App() {
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
           <RefineSnackbarProvider>
             <Refine
-              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              dataProvider={dataProvider("https://localhost:7262/api")}
               notificationProvider={notificationProvider}
               authProvider={authProvider}
               i18nProvider={i18nProvider}
               routerProvider={routerBindings}
               resources={[
+                {
+                  name: "Department",
+                  list: "/departments",
+                  create: "/departments/create",
+                  edit: "/departments/edit/:id",
+                  show: "/departments/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                },
                 {
                   name: "blog_posts",
                   list: "/blog-posts",
@@ -112,6 +122,13 @@ function App() {
                     index
                     element={<NavigateToResource resource="blog_posts" />}
                   />
+                  <Route path="/departments">
+                    <Route index element={<CategoryList />} />
+                    <Route path="create" element={<CategoryCreate />} />
+                    <Route path="edit/:id" element={<CategoryEdit />} />
+                    <Route path="show/:id" element={<CategoryShow />} />
+                  </Route>
+
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
