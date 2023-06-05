@@ -1,4 +1,4 @@
 export { CourseCreate } from "./create";
-export { BlogPostEdit } from "./edit";
+export { CourseEdit } from "./edit";
 export { CourseList } from "./list";
 export { CourseShow } from "./show";

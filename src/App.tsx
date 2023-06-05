@@ -44,7 +44,8 @@ import {
 import {
   CourseList,
   CourseCreate,
-  CourseShow
+  CourseShow,
+  CourseEdit
 } from "./pages/courses";
 
 import { ForgotPassword } from "./pages/forgotPassword";
@@ -152,7 +153,7 @@ function App() {
                   <Route path="/courses">
                     <Route index element={<CourseList />} />
                     <Route path="create" element={<CourseCreate />} />
-                    <Route path="edit/:id" element={<BlogPostEdit />} />
+                    <Route path="edit/:id" element={<CourseEdit />} />
                     <Route path="show/:id" element={<CourseShow />} />
                   </Route>
                   <Route path="/blog-posts">
