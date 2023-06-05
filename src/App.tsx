@@ -40,7 +40,13 @@ import {
   DepartmentShow,
   DepartmentEdit,
   DepartmentCreate
-} from "./pages/departments"
+} from "./pages/departments";
+import {
+  CourseList,
+  CourseCreate,
+  CourseShow
+} from "./pages/courses";
+
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -74,6 +80,16 @@ function App() {
                   create: "/departments/create",
                   edit: "/departments/edit/:id",
                   show: "/departments/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                },
+                {
+                  name: "Course",
+                  list: "/courses",
+                  create: "/courses/create",
+                  edit: "/courses/edit/:id",
+                  show: "/courses/show/:id",
                   meta: {
                     canDelete: true,
                   },
@@ -133,7 +149,12 @@ function App() {
                     <Route path="edit/:id" element={<DepartmentEdit />} />
                     <Route path="show/:id" element={<DepartmentShow />} />
                   </Route>
-
+                  <Route path="/courses">
+                    <Route index element={<CourseList />} />
+                    <Route path="create" element={<CourseCreate />} />
+                    <Route path="edit/:id" element={<BlogPostEdit />} />
+                    <Route path="show/:id" element={<CourseShow />} />
+                  </Route>
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
