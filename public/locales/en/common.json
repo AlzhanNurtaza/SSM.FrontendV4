@@ -182,5 +182,18 @@
       "edit": "Edit",
       "show": "Show"
     }
+  },
+  "Group":{
+    "Group":"Group",
+    "fields": {
+      "id":"Id",
+      "name":"Name"
+    },
+    "titles":{
+      "list": "Groups",
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show"
+    }
   }
 }
