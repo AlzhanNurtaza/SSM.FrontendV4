@@ -52,6 +52,9 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
+import RoomPreferencesOutlinedIcon from '@mui/icons-material/RoomPreferencesOutlined';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -84,6 +87,7 @@ function App() {
                   meta: {
                     canDelete: true,
                   },
+                  icon: <RoomPreferencesOutlinedIcon />,
                 },
                 {
                   name: "Course",
@@ -94,6 +98,7 @@ function App() {
                   meta: {
                     canDelete: true,
                   },
+                  icon:<BookOutlinedIcon/>
                 },
                 {
                   name: "blog_posts",
