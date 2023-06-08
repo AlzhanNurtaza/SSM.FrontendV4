@@ -174,7 +174,8 @@
     "Speciality":"Speciality",
     "fields": {
       "id":"Id",
-      "name":"Name"
+      "name":"Name",
+      "code":"Code"
     },
     "titles":{
       "list": "Specialities",

@@ -27,6 +27,14 @@ export const SpecialityList: React.FC<IResourceComponentsProps> = () => {
                 filterOperators: filterOperators,
             },
             {
+                field: "code",
+                flex: 1,
+                headerName: translate("Speciality.fields.code"),
+                minWidth: 200,
+                sortable: false,
+                filterable: false,
+            },
+            {
                 field: "actions",
                 headerName: translate("table.actions"),
                 sortable: false,

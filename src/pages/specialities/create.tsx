@@ -33,6 +33,19 @@ export const SpecialityCreate: React.FC<IResourceComponentsProps> = () => {
                     label={translate("Speciality.fields.name")}
                     name="name"
                 />
+                <TextField
+                    {...register("code", {
+                        required: "This field is required",
+                    })}
+                    error={!!(errors as any)?.code}
+                    helperText={(errors as any)?.code?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="text"
+                    label={translate("Speciality.fields.code")}
+                    name="code"
+                />
             </Box>
         </Create>
     );

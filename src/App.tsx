@@ -67,7 +67,7 @@ import { Register } from "./pages/register";
 import RoomPreferencesOutlinedIcon from '@mui/icons-material/RoomPreferencesOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
-import Diversity2OutlinedIcon from '@mui/icons-material/Diversity2Outlined';
+import RecentActorsOutlinedIcon from '@mui/icons-material/RecentActorsOutlined';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -134,7 +134,7 @@ function App() {
                   meta: {
                     canDelete: true,
                   },
-                  icon: <Diversity2OutlinedIcon />,
+                  icon: <RecentActorsOutlinedIcon />,
                 },
                 {
                   name: "blog_posts",

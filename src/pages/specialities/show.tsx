@@ -24,6 +24,11 @@ export const SpecialityShow: React.FC<IResourceComponentsProps> = () => {
                   {translate("Speciality.fields.name")}
               </Typography>
               <TextField value={record?.name} />
+
+              <Typography variant="body1" fontWeight="bold">
+                    {translate("Speciality.fields.code")}
+                </Typography>
+                <TextField value={record?.code} />
           </Stack>
       </Show>
   );
