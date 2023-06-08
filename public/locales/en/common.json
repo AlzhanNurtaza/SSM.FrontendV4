@@ -153,5 +153,21 @@
       "edit": "Edit",
       "show": "Show"
     }
+  },
+  "Course":{
+    "Course":"Course",
+    "fields": {
+      "id":"Id",
+      "name":"Name",
+      "creditCount": "Credit count",
+      "department": "Department",
+      "instructor": "Instructor"
+    },
+    "titles":{
+      "list": "Courses",
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show"
+    }
   }
 }

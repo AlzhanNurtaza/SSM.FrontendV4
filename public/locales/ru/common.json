@@ -145,6 +145,7 @@
   "Department":{
     "Department":"Департамент",
     "fields": {
+      "id":"Id",
       "name":"Название"
     },
     "titles":{
@@ -157,6 +158,7 @@
   "Course":{
     "Course":"Предмет",
     "fields": {
+      "id":"Id",
       "name":"Название",
       "creditCount": "Кол-во кредитов",
       "department": "Департамент",

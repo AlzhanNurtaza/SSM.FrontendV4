@@ -20,6 +20,7 @@ export const CourseEdit: React.FC<IResourceComponentsProps> = () => {
     const { autocompleteProps: instructorAutocompleteProps } = useAutocomplete({
       resource: "UserAuth",
     });
+    
 
     const courseData = queryResult?.data?.data;
 
@@ -115,7 +116,7 @@ export const CourseEdit: React.FC<IResourceComponentsProps> = () => {
                         />
                     )}
                 />
-<Controller
+                <Controller
                     control={control}
                     name="instructor"
                     rules={{ required: "This field is required" }}
