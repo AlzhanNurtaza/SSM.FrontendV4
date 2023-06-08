@@ -3,15 +3,17 @@ import {
     useDataGrid,
     EditButton,
     ShowButton,
-    DeleteButton,
     List,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { DataGrid, GridColumns,ruRU,getGridStringOperators } from "@mui/x-data-grid";
+import { IResourceComponentsProps, useTranslate,useGetLocale } from "@refinedev/core";
 
 export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
+    const locale = useGetLocale();
+    const currentLocale = locale();
     const { dataGridProps } = useDataGrid();
+    const filterOperators = getGridStringOperators().filter(({ value }) =>['contains'  ].includes(value));
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -20,6 +22,9 @@ export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
                 flex: 1,
                 headerName: translate("Department.fields.name"),
                 minWidth: 200,
+                sortable: false,
+                filterable: true,
+                filterOperators: filterOperators,
             },
             {
                 field: "actions",
@@ -43,7 +48,10 @@ export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight 
+             localeText={currentLocale==="ru" ? ruRU.components.MuiDataGrid.defaultProps.localeText:
+             undefined }
+            />
         </List>
     );
 };

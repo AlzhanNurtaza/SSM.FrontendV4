@@ -3,7 +3,6 @@ import {
     useDataGrid,
     EditButton,
     ShowButton,
-    DeleteButton,
     List,
 } from "@refinedev/mui";
 import { DataGrid, GridColumns, ruRU,getGridStringOperators  } from "@mui/x-data-grid";
