@@ -169,5 +169,18 @@
       "edit": "Edit",
       "show": "Show"
     }
+  },
+  "Speciality":{
+    "Speciality":"Speciality",
+    "fields": {
+      "id":"Id",
+      "name":"Name"
+    },
+    "titles":{
+      "list": "Specialities",
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show"
+    }
   }
 }

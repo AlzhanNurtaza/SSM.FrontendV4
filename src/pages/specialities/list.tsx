@@ -6,9 +6,9 @@ import {
     List,
 } from "@refinedev/mui";
 import { DataGrid, GridColumns,ruRU,getGridStringOperators } from "@mui/x-data-grid";
-import { IResourceComponentsProps, useTranslate,useGetLocale } from "@refinedev/core";
+import { IResourceComponentsProps, useTranslate,useGetLocale} from "@refinedev/core";
 
-export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
+export const SpecialityList: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
     const locale = useGetLocale();
     const currentLocale = locale();
@@ -20,7 +20,7 @@ export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "name",
                 flex: 1,
-                headerName: translate("Department.fields.name"),
+                headerName: translate("Speciality.fields.name"),
                 minWidth: 200,
                 sortable: false,
                 filterable: true,
@@ -49,7 +49,7 @@ export const DepartmentList: React.FC<IResourceComponentsProps> = () => {
     return (
         <List>
             <DataGrid {...dataGridProps} columns={columns} autoHeight 
-             localeText={currentLocale==="ru" ? ruRU.components.MuiDataGrid.defaultProps.localeText:
+            localeText={currentLocale==="ru" ? ruRU.components.MuiDataGrid.defaultProps.localeText:
              undefined }
             />
         </List>

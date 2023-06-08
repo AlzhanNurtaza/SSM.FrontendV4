@@ -47,6 +47,12 @@ import {
   CourseShow,
   CourseEdit
 } from "./pages/courses";
+import {
+  SpecialityList,
+  SpecialityCreate,
+  SpecialityShow,
+  SpecialityEdit
+} from "./pages/specialities";
 
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
@@ -54,6 +60,7 @@ import { Register } from "./pages/register";
 
 import RoomPreferencesOutlinedIcon from '@mui/icons-material/RoomPreferencesOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -99,6 +106,17 @@ function App() {
                     canDelete: true,
                   },
                   icon:<BookOutlinedIcon/>
+                },
+                {
+                  name: "Speciality",
+                  list: "/specialities",
+                  create: "/specialities/create",
+                  edit: "/specialities/edit/:id",
+                  show: "/specialities/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                  icon:<AssignmentIndOutlinedIcon/>
                 },
                 {
                   name: "blog_posts",
@@ -160,6 +178,12 @@ function App() {
                     <Route path="create" element={<CourseCreate />} />
                     <Route path="edit/:id" element={<CourseEdit />} />
                     <Route path="show/:id" element={<CourseShow />} />
+                  </Route>
+                  <Route path="/specialities">
+                    <Route index element={<SpecialityList />} />
+                    <Route path="create" element={<SpecialityCreate />} />
+                    <Route path="edit/:id" element={<SpecialityEdit />} />
+                    <Route path="show/:id" element={<SpecialityShow />} />
                   </Route>
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
