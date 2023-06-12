@@ -189,7 +189,10 @@
     "Group":"Группа",
     "fields": {
       "id":"Id",
-      "name":"Название"
+      "name":"Название",
+      "startYear":"Год начала",
+      "speciality":"Специальность",
+      "groupNumber":"Номер группы"
     },
     "titles":{
       "list": "Группы",

@@ -1,7 +1,9 @@
-import { Create } from "@refinedev/mui";
-import { Box, TextField } from "@mui/material";
+import { Create,useAutocomplete } from "@refinedev/mui";
+import { Box, TextField,Autocomplete } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import React, { useEffect } from 'react';
+import { Controller } from "react-hook-form";
 
 export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -11,7 +13,26 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
         register,
         control,
         formState: { errors },
+        watch,
+        setValue
     } = useForm();
+    const { autocompleteProps: specialityAutocompleteProps } = useAutocomplete({
+        resource: "Speciality",
+      });
+  
+
+    const startYearValue=watch('startYear');
+    const groupNumberValue=watch('groupNumber');
+    const specialityCode=watch('speciality');
+
+
+    
+    const textFieldValue = specialityCode?.code +'-'+startYearValue +'-'+ groupNumberValue;
+
+
+    useEffect(() => {
+        setValue('name', textFieldValue); // Set the value manually
+    }, [textFieldValue, setValue]);
 
     return (
         <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
@@ -20,6 +41,81 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
             >
+                <Controller
+                    control={control}
+                    name="speciality"
+                    rules={{ required: "This field is required" }}
+                    // eslint-disable-next-line
+                    defaultValue={null as any}
+                    render={({ field }) => (
+                        <Autocomplete
+                            {...specialityAutocompleteProps}
+                            {...field}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            getOptionLabel={(item) => {
+                                return (
+                                    specialityAutocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.name ?? ""
+                                );
+                            }}
+                            isOptionEqualToValue={(option, value) =>
+                                value === undefined ||
+                                option?.id?.toString() === value?.id?.toString()
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label={translate(
+                                        "Group.fields.speciality",
+                                    )}
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!(errors as any)?.speciality?.id}
+                                    helperText={
+                                        (errors as any)?.speciality?.id?.message
+                                    }
+                                    required
+                                />
+                            )}
+                        />
+                    )}
+                />
+                <TextField
+                    {...register("startYear", {
+                        required: "This field is required",
+                        valueAsNumber: true,
+                    })}
+                    error={!!(errors as any)?.startYear}
+                    helperText={(errors as any)?.startYear?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="number"
+                    label={translate("Group.fields.startYear")}
+                    name="startYear"
+                />
+                <TextField
+                    {...register("groupNumber", {
+                        required: "This field is required",
+                        valueAsNumber: true,
+                    })}
+                    error={!!(errors as any)?.groupNumber}
+                    helperText={(errors as any)?.groupNumber?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="number"
+                    label={translate("Group.fields.groupNumber")}
+                    name="groupNumber"
+                />
+                
+                
+                
                 <TextField
                     {...register("name", {
                         required: "This field is required",
@@ -29,9 +125,10 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
                     margin="normal"
                     fullWidth
                     InputLabelProps={{ shrink: true }}
-                    type="text"
                     label={translate("Group.fields.name")}
                     name="name"
+                    disabled
+                    value={textFieldValue}
                 />
             </Box>
         </Create>

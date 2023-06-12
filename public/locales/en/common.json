@@ -188,7 +188,10 @@
     "Group":"Group",
     "fields": {
       "id":"Id",
-      "name":"Name"
+      "name":"Name",
+      "startYear":"Start Year",
+      "speciality":"Speciality",
+      "groupNumber":"Group Number"
     },
     "titles":{
       "list": "Groups",

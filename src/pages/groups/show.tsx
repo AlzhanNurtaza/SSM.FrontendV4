@@ -21,6 +21,14 @@ export const GroupShow: React.FC<IResourceComponentsProps> = () => {
               </Typography>
               <TextField value={record?.id} />
               <Typography variant="body1" fontWeight="bold">
+                    {translate("Group.fields.startYear")}
+                </Typography>
+                <TextField value={record?.startYear ?? ""} />
+                <Typography variant="body1" fontWeight="bold">
+                    {translate("Group.fields.speciality")}
+                </Typography>
+                <TextField value={record?.speciality?.name} />
+              <Typography variant="body1" fontWeight="bold">
                   {translate("Group.fields.name")}
               </Typography>
               <TextField value={record?.name} />

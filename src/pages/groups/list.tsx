@@ -18,6 +18,24 @@ export const GroupList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<GridColumns<any>>(
         () => [
             {
+                field: "startYear",
+                flex: 1,
+                headerName: translate("Group.fields.startYear"),
+                //type: "number",
+                minWidth: 200,
+            },
+            {
+                field: "speciality",
+                flex: 1,
+                headerName: translate("Group.fields.speciality"),
+                valueGetter: ({ row }) => {
+                    const value = row?.speciality?.name;
+
+                    return value;
+                },
+                minWidth: 200,
+            },
+            {
                 field: "name",
                 flex: 1,
                 headerName: translate("Group.fields.name"),
