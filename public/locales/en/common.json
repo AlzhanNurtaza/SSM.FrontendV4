@@ -199,5 +199,19 @@
       "edit": "Edit",
       "show": "Show"
     }
+  },
+  "Classroom":{
+    "Classroom":"Classrooms",
+    "fields": {
+      "id":"Id",
+      "name":"Classroom",
+      "seats":"Seats"
+    },
+    "titles":{
+      "list": "Classrooms",
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show"
+    }
   }
 }

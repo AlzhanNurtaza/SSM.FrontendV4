@@ -59,6 +59,12 @@ import {
   GroupShow,
   GroupEdit
 } from "./pages/groups";
+import {
+  ClassroomList,
+  ClassroomCreate,
+  ClassroomShow,
+  ClassroomEdit
+} from "./pages/classrooms";
 
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
@@ -68,6 +74,7 @@ import RoomPreferencesOutlinedIcon from '@mui/icons-material/RoomPreferencesOutl
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import RecentActorsOutlinedIcon from '@mui/icons-material/RecentActorsOutlined';
+import LivingOutlinedIcon from '@mui/icons-material/LivingOutlined';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -135,6 +142,17 @@ function App() {
                     canDelete: true,
                   },
                   icon: <RecentActorsOutlinedIcon />,
+                },
+                {
+                  name: "Classroom",
+                  list: "/classrooms",
+                  create: "/classrooms/create",
+                  edit: "/classrooms/edit/:id",
+                  show: "/classrooms/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                  icon:<LivingOutlinedIcon/>
                 },
                 {
                   name: "blog_posts",
@@ -208,6 +226,12 @@ function App() {
                     <Route path="create" element={<GroupCreate />} />
                     <Route path="edit/:id" element={<GroupEdit />} />
                     <Route path="show/:id" element={<GroupShow />} />
+                  </Route>
+                  <Route path="/classrooms">
+                    <Route index element={<ClassroomList />} />
+                    <Route path="create" element={<ClassroomCreate />} />
+                    <Route path="edit/:id" element={<ClassroomEdit />} />
+                    <Route path="show/:id" element={<ClassroomShow />} />
                   </Route>
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
