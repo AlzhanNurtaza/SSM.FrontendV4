@@ -191,7 +191,9 @@
       "name":"Name",
       "startYear":"Start Year",
       "speciality":"Speciality",
-      "groupNumber":"Group Number"
+      "groupNumber":"Group Number",
+      "students": "Students",
+      "studentsCount": "Count"
     },
     "titles":{
       "list": "Groups",

@@ -45,6 +45,16 @@ export const GroupList: React.FC<IResourceComponentsProps> = () => {
                 filterOperators: filterOperators,
             },
             {
+                field: 'studentsCount', // Calculated field
+                headerName: translate("Group.fields.studentsCount"),
+                width: 100,
+                valueGetter: (params) => {
+                  const { students } = params.row;
+                  const total = students.length
+                  return total;
+                },
+            },
+            {
                 field: "actions",
                 headerName: translate("table.actions"),
                 sortable: false,

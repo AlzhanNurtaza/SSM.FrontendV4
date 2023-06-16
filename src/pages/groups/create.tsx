@@ -19,6 +19,9 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
     const { autocompleteProps: specialityAutocompleteProps } = useAutocomplete({
         resource: "Speciality",
       });
+    const { autocompleteProps: studentAutocompleteProps } = useAutocomplete({
+        resource: "UserAuth",
+     });
   
 
     const startYearValue=watch('startYear');
@@ -130,6 +133,52 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
                     name="name"
                     disabled
                     value={textFieldValue}
+                />
+                <Controller
+                    control={control}
+                    name="students"
+                    rules={{ required: "This field is required" }}
+                    // eslint-disable-next-line
+                    defaultValue={[]}
+                    render={({ field }) => (
+                        <Autocomplete
+                            {...studentAutocompleteProps}
+                            {...field}
+                            multiple
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            getOptionLabel={(item) => {
+                                return (
+                                    studentAutocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.lastName + " " + item.firstName ?? ""
+                                );
+                            }}
+                            isOptionEqualToValue={(option, value) =>
+                                value === undefined ||
+                                option?.id?.toString() === value?.id?.toString()
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label={translate(
+                                        "Group.fields.students",
+                                    )}
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!(errors as any)?.students?.id}
+                                    helperText={
+                                        (errors as any)?.students?.id?.message
+                                    }
+                                    required
+                                    InputLabelProps={{ shrink: true }}
+                                />
+                            )}
+                        />
+                    )}
                 />
             </Box>
         </Create>

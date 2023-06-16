@@ -192,7 +192,9 @@
       "name":"Название",
       "startYear":"Год начала",
       "speciality":"Специальность",
-      "groupNumber":"Номер группы"
+      "groupNumber":"Номер группы",
+      "students": "Студенты",
+      "studentsCount": "Кол-во"
     },
     "titles":{
       "list": "Группы",
