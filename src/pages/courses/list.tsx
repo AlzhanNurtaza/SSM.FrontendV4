@@ -49,19 +49,10 @@ export const CourseList: React.FC<IResourceComponentsProps> = () => {
                 sortable: false
             },
             {
-                field: "instructor",
+                field: "code",
                 flex: 1,
-                headerName: translate("Course.fields.instructor"),
-                minWidth: 200,
-                renderCell: function render({ row }) {
-                    return (
-                        <>
-                            {row?.instructor?.firstName +
-                                " " +
-                                row?.instructor?.lastName}
-                        </>
-                    );
-                },
+                headerName: translate("Course.fields.code"),
+                minWidth: 100,
                 sortable: false
             },
             {

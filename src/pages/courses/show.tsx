@@ -37,15 +37,9 @@ export const CourseShow: React.FC<IResourceComponentsProps> = () => {
               </Typography>
               <TextField value={record?.department?.name} />
               <Typography variant="body1" fontWeight="bold">
-                  {translate("Course.fields.instructor")}
+                  {translate("Course.fields.code")}
               </Typography>
-              <TextField
-                  value={
-                      record?.instructor?.firstName +
-                      " " +
-                      record?.instructor?.lastName
-                  }
-              />
+              <TextField value={record?.code} />
           </Stack>
       </Show>
   );

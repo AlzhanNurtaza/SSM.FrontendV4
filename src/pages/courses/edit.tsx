@@ -116,49 +116,18 @@ export const CourseEdit: React.FC<IResourceComponentsProps> = () => {
                         />
                     )}
                 />
-                <Controller
-                    control={control}
-                    name="instructor"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...instructorAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                  instructorAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.lastName + " " + item.firstName ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() === value?.id?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label={translate(
-                                        "Course.fields.instructor",
-                                    )}
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.instructor?.id}
-                                    helperText={
-                                        (errors as any)?.instructor?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
+                <TextField
+                    {...register("code", {
+                        required: "This field is required",
+                    })}
+                    error={!!(errors as any)?.name}
+                    helperText={(errors as any)?.name?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="text"
+                    label={translate("Course.fields.code")}
+                    name="code"
                 />
             </Box>
         </Edit>

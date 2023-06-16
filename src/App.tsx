@@ -65,6 +65,12 @@ import {
   ClassroomShow,
   ClassroomEdit
 } from "./pages/classrooms";
+import {
+  EnrollmentList,
+  EnrollmentCreate,
+  EnrollmentShow,
+  EnrollmentEdit
+} from "./pages/enrollments";
 
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
@@ -75,6 +81,7 @@ import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import RecentActorsOutlinedIcon from '@mui/icons-material/RecentActorsOutlined';
 import LivingOutlinedIcon from '@mui/icons-material/LivingOutlined';
+import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -155,6 +162,17 @@ function App() {
                   icon:<LivingOutlinedIcon/>
                 },
                 {
+                  name: "Enrollment",
+                  list: "/enrollments",
+                  create: "/enrollments/create",
+                  edit: "/enrollments/edit/:id",
+                  show: "/enrollments/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                  icon:<PermContactCalendarOutlinedIcon/>
+                },
+                {
                   name: "blog_posts",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
@@ -232,6 +250,12 @@ function App() {
                     <Route path="create" element={<ClassroomCreate />} />
                     <Route path="edit/:id" element={<ClassroomEdit />} />
                     <Route path="show/:id" element={<ClassroomShow />} />
+                  </Route>
+                  <Route path="/enrollments">
+                    <Route index element={<EnrollmentList />} />
+                    <Route path="create" element={<EnrollmentCreate />} />
+                    <Route path="edit/:id" element={<EnrollmentEdit />} />
+                    <Route path="show/:id" element={<EnrollmentShow />} />
                   </Route>
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />

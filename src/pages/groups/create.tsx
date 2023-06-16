@@ -112,6 +112,7 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
                     type="number"
                     label={translate("Group.fields.groupNumber")}
                     name="groupNumber"
+                    inputProps={{min:1}}
                 />
                 
                 

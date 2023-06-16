@@ -161,7 +161,7 @@
       "name":"Name",
       "creditCount": "Credit count",
       "department": "Department",
-      "instructor": "Instructor"
+      "code": "Course code"
     },
     "titles":{
       "list": "Courses",
@@ -212,6 +212,25 @@
       "create": "Create",
       "edit": "Edit",
       "show": "Show"
+    }
+  },
+  "Enrollment":{
+    "Enrollment":"Enrollment",
+    "fields": {
+      "id":"Id",
+      "term":"Term",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "groups":"Groups",
+      "course":"Course",
+      "instructor":"Instructor",
+      "name": "Name"
+    },
+    "titles":{
+      "list": "Регистрации",
+      "create": "Создать",
+      "edit": "Редактировать",
+      "show": "Показать"
     }
   }
 }
