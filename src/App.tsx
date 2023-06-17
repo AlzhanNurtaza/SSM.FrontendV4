@@ -71,6 +71,10 @@ import {
   EnrollmentShow,
   EnrollmentEdit
 } from "./pages/enrollments";
+import {
+  ScheduleView
+} from "./pages/schedules";
+import "./App.css";
 
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
@@ -82,6 +86,7 @@ import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined
 import RecentActorsOutlinedIcon from '@mui/icons-material/RecentActorsOutlined';
 import LivingOutlinedIcon from '@mui/icons-material/LivingOutlined';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -173,6 +178,17 @@ function App() {
                   icon:<PermContactCalendarOutlinedIcon/>
                 },
                 {
+                  name: "Schedule",
+                  list: "/schedules",
+                  create: "/schedules/create",
+                  edit: "/schedules/edit/:id",
+                  show: "/schedules/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                  icon:<CalendarMonthOutlinedIcon/>
+                },
+                {
                   name: "blog_posts",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
@@ -257,6 +273,10 @@ function App() {
                     <Route path="edit/:id" element={<EnrollmentEdit />} />
                     <Route path="show/:id" element={<EnrollmentShow />} />
                   </Route>
+                  <Route
+                                path="scheduleView"
+                                element={<ScheduleView />}
+                            />
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
