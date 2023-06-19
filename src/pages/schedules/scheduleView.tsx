@@ -1,4 +1,5 @@
-import { ScheduleComponent, Day, Week, Inject,PopupOpenEventArgs,RecurrenceEditorComponent,PopupCloseEventArgs } from '@syncfusion/ej2-react-schedule';
+import { ScheduleComponent, Day, Week, Inject,PopupOpenEventArgs,RecurrenceEditorComponent,PopupCloseEventArgs,
+  ResourcesDirective, ResourceDirective, } from '@syncfusion/ej2-react-schedule';
 import { DataManager, UrlAdaptor,WebApiAdaptor} from '@syncfusion/ej2-data';
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
@@ -6,6 +7,14 @@ import { useRef } from 'react';
 import * as React from 'react';
 
  export const ScheduleView: React.FC = () => {
+
+  const datamanagerClassroom2= new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
+   adaptor: new WebApiAdaptor(),
+  });
+  const group = { resources: ['Classrooms'] }
+  const classroomData = datamanagerClassroom2 
+
+
 
   const datamanagerClassroom = new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
    adaptor: new WebApiAdaptor(),
@@ -81,6 +90,8 @@ import * as React from 'react';
     <div>
       <h2>Schedule Viewer</h2>
       <ScheduleComponent 
+      
+        group={group}
         ref={scheduleObj}
         editorTemplate={editorTemplate}
         popupOpen={onPopupOpen}
@@ -94,8 +105,14 @@ import * as React from 'react';
             crossDomain: true
         }),
 
-        } }>
+        } }
+        >
         <Inject services={[Day, Week ]} />
+        <ResourcesDirective>
+        <ResourceDirective field='ClassroomId' title='Classroom' name='Classrooms' allowMultiple={true}
+          dataSource={classroomData} textField='name' idField='id' >
+        </ResourceDirective>
+      </ResourcesDirective>
     </ScheduleComponent>
     </div>
   );
