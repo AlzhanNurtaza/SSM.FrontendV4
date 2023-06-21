@@ -1,5 +1,5 @@
 import { ScheduleComponent, Day, Week, Inject,PopupOpenEventArgs,RecurrenceEditorComponent,PopupCloseEventArgs,
-  ResourcesDirective, ResourceDirective, } from '@syncfusion/ej2-react-schedule';
+  ResourcesDirective, ResourceDirective, ViewsDirective,ViewDirective} from '@syncfusion/ej2-react-schedule';
 import { DataManager, UrlAdaptor,WebApiAdaptor,Query} from '@syncfusion/ej2-data';
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
@@ -158,6 +158,7 @@ import * as React from 'react';
       <tr><td className="e-textlabel">From</td><td colSpan={4}>
         <DateTimePickerComponent format='dd/MM/yy hh:mm a' 
         id="StartTime" 
+        allowEdit={true}
         data-name="StartTime" value={new Date((props as any).startTime || (props as any).StartTime)} className="e-field"></DateTimePickerComponent>
       </td></tr>
       <tr><td className="e-textlabel">To</td><td colSpan={4}>
@@ -205,6 +206,10 @@ import * as React from 'react';
 
         } }
         >
+          <ViewsDirective>
+            <ViewDirective option="Week" />
+            <ViewDirective option="Day" />
+        </ViewsDirective>
         <Inject services={[Day, Week ]} />
         <ResourcesDirective>
         <ResourceDirective field='ClassroomId' title='Classroom' name='Classrooms' allowMultiple={true}

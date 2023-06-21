@@ -10,6 +10,3 @@
 @import "../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
 
 
-.e-today,.e-work-week,.e-month,.e-agenda{ 
-    display: none !important;     
-} 
