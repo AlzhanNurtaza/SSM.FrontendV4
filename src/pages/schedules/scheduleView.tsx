@@ -11,6 +11,8 @@ import * as numbers from 'cldr-data/main/ru/numbers.json';
 import * as detimeZoneNames from 'cldr-data/main/ru/timeZoneNames.json';
 import * as numberingSystems from 'cldr-data/supplemental/numberingSystems.json';
 import { useTranslate,useGetLocale } from "@refinedev/core";
+import { registerLicense  } from '@syncfusion/ej2-base';
+registerLicense('Mgo+DSMBaFt+QHJqVEZrW05FdUBAXWFKblJ8QGJTfV9gBShNYlxTR3ZZQF9jSHtUd0NqUX1f;Mgo+DSMBPh8sVXJ1S0R+XVFPcUBDXnxLflF1VWJTel96dlRWESFaRnZdQV1lS3xTd0BkWHlXeX1U;ORg4AjUWIQA/Gnt2VFhiQlBEfVhdXGBWfFN0RnNYdVtxfldHcC0sT3RfQF5jT3xRdkRmXn5ZcHZVRw==;MjQ5Mjc1NEAzMjMxMmUzMDJlMzBPdnpmc0NvdTI2cXpuNWhSZmlJOHRHRWdnbzhqdEh4c2xycVhxb1kxb2NnPQ==;MjQ5Mjc1NUAzMjMxMmUzMDJlMzBuWFdrYnZEdUZXdGUzb3F1am5taUl5ZkIzSklrVXlaME1ubkpzcEVxYmhBPQ==;NRAiBiAaIQQuGjN/V0d+Xk9FdlRFQmJKYVF2R2BJflR1dV9EYUwgOX1dQl9gSXhRdEViXHhfd3RcRmE=;MjQ5Mjc1N0AzMjMxMmUzMDJlMzBrRHhKUjhIU1hUZG9nRlNSK3B2TFFWaEcrTDBmcDVaS3lGajJjVGJ1RCtBPQ==;MjQ5Mjc1OEAzMjMxMmUzMDJlMzBabkVkbS8yckdadzNiUVFEUTB5NCtEMGhhK1FhUVFyME41QmNrdDk5QU1vPQ==;Mgo+DSMBMAY9C3t2VFhiQlBEfVhdXGBWfFN0RnNYdVtxfldHcC0sT3RfQF5jT3xRdkRmXn5ZcXJSRw==;MjQ5Mjc2MEAzMjMxMmUzMDJlMzBrUmRaeTNMeDBKTkhUa0sySnY2T2tNbUMzTHpvbG1ZWHZZazY4VmVNeHVnPQ==;MjQ5Mjc2MUAzMjMxMmUzMDJlMzBSQ1NJQXZ3Ymt0OUFHVCtDRzJqRTNZbllDVXl1M3NyUXpCaXJmaHRDK0NBPQ==;MjQ5Mjc2MkAzMjMxMmUzMDJlMzBrRHhKUjhIU1hUZG9nRlNSK3B2TFFWaEcrTDBmcDVaS3lGajJjVGJ1RCtBPQ==');
 
 loadCldr(numberingSystems, gregorian, numbers, detimeZoneNames);
 let localeTexts='';
