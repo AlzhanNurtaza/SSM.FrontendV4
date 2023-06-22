@@ -234,5 +234,25 @@
       "edit": "Редактировать",
       "show": "Показать"
     }
+  },
+  "Schedule":{
+    "Schedule":"Schedule",
+    "fields": {
+      "enrollment":"Enrollment",
+      "subject":"Subject",
+      "enrollmentName": "Enrollment Name",
+      "groupsName": "Groups",
+      "studentCount":"Students Count",
+      "courseName":"Course",
+      "instructorName":"Instructor",
+      "classroom": "Classroom",
+      "seats": "Seats count",
+      "from": "From",
+      "to": "To",
+      "recurrence":"Recurrence",
+      "filter":"Filters:",
+      "group":"Group",
+      "classroomName":"Classroom"
+    }
   }
 }

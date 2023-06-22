@@ -43,6 +43,28 @@ L10n.load(JSON.parse(localeTexts));
   const datamanagerEnrollment = new DataManager({ url: 'https://localhost:7262/api/Enrollment', // Replace with your API endpoint URL
    adaptor: new WebApiAdaptor(),
   });
+  //////////////////////////////////
+
+  const [filterInstructorName,setFilterInstructorName] = useState('');
+  const [filterCourseName,setFilterCourseName] = useState('');
+  const [filterGroup,setFilterGroup] = useState('');
+  const [filterClassroom,setFilterClassroom] = useState('');
+  const query = new Query();
+  query.where('InstructorName','equal',filterInstructorName);
+  query.where('CourseName','equal',filterCourseName);
+  query.where('GroupsName','equal',filterGroup);
+  query.where('ClassroomName','equal',filterClassroom);
+  
+
+
+
+  const dataManagerSchedule = new DataManager({
+    url: 'https://localhost:7262/api/Schedule',
+    adaptor: new UrlAdaptor(),
+    crossDomain: true});
+
+
+
 
   const scheduleObj = useRef<ScheduleComponent>(null);
   const recurrObject = useRef<RecurrenceEditorComponent>(null);
@@ -76,6 +98,7 @@ L10n.load(JSON.parse(localeTexts));
     const [enrollmentInstructorName, setEnrollmentInstructorName] = useState('');
     const [classroomId, setClassroomId] = useState(props.ClassroomId || '');
     const [classroomSeats,setClassroomSeats] = useState(0);
+    const [classroomName,setClassroomName] = useState('');
     if(props.ClassroomId && classroomSeats==0)
     {
       datamanagerClassroom.executeQuery(new Query()).then((response: any) => {
@@ -89,6 +112,7 @@ L10n.load(JSON.parse(localeTexts));
         if(filteredRecords.length>0)
         {
           setClassroomSeats(filteredRecords[0].seats);
+          setClassroomName(filteredRecords[0].name)
         }
       }).catch((error: any) => {
         console.error(error);
@@ -117,6 +141,7 @@ L10n.load(JSON.parse(localeTexts));
       {
         setClassroomId(e.itemData.id);
         setClassroomSeats(e.itemData.seats);
+        setClassroomName(e.itemData.name);
       }
     };
     return (
@@ -177,6 +202,11 @@ L10n.load(JSON.parse(localeTexts));
         value={classroomSeats || props.SeatCount || 0}
         />
       </td></tr>
+      <tr ><td className="e-textlabel">{translate("Schedule.fields.classroomName")}</td><td colSpan={4}>
+        <input disabled id="ClassroomName"  className="e-field e-input" type="text" name="ClassroomName" 
+        value={classroomName || props.ClassroomName || ''}
+        />
+      </td></tr>
       <tr><td className="e-textlabel">{translate("Schedule.fields.from")}</td><td colSpan={4}>
         <DateTimePickerComponent format='dd/MM/yy hh:mm a' 
         id="StartTime" 
@@ -210,6 +240,44 @@ L10n.load(JSON.parse(localeTexts));
   return (
     <div>
       <h2>{translate("Schedule.Schedule")}</h2>
+      <table  style={{width:'300px'}} >
+      <thead>
+        <tr>
+          <td>
+          {translate("Schedule.fields.filter")}
+          </td>
+        </tr>
+      </thead>  
+      <tbody>
+      <tr>
+      <td colSpan={4}>
+      <input  className=" e-input" type="text" name="InstructorName" placeholder={translate("Schedule.fields.instructorName")}
+      value={filterInstructorName}
+      onChange={e=>setFilterInstructorName(e.target.value)}
+        />
+      </td></tr>
+      <tr>
+      <td colSpan={4}>
+      <input  className="e-input" type="text" name="CourseName" placeholder={translate("Schedule.fields.courseName")}
+      value={filterCourseName}
+      onChange={e=>setFilterCourseName(e.target.value)}
+        />
+      </td></tr>
+      <tr>
+      <td colSpan={4}>
+      <input  className="e-input" type="text" name="Group" placeholder={translate("Schedule.fields.group")}
+      value={filterGroup}
+      onChange={e=>setFilterGroup(e.target.value)}
+        />
+      </td></tr>
+      <tr>
+      <td colSpan={4}>
+      <input  className="e-input" type="text" name="ClassroomName" placeholder={translate("Schedule.fields.classroomName")}
+      value={filterClassroom}
+      onChange={e=>setFilterClassroom(e.target.value)}
+        />
+      </td></tr>
+      </tbody></table>
       <ScheduleComponent 
         locale={currentLocale==='ru'?'ru':'en'}
         group={group}
@@ -220,13 +288,10 @@ L10n.load(JSON.parse(localeTexts));
         
         height='550px' selectedDate={new Date()}
         eventSettings={ { 
-        dataSource : new DataManager({
-            url: 'https://localhost:7262/api/Schedule',
-            adaptor: new UrlAdaptor(),
-            crossDomain: true
-        }),
-
+        dataSource : dataManagerSchedule,
+        query:query
         } }
+
         >
           <ViewsDirective>
             <ViewDirective option="Week" />
