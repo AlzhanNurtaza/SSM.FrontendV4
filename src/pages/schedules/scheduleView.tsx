@@ -1,9 +1,9 @@
 import { ScheduleComponent, Day, Week, Inject,PopupOpenEventArgs,RecurrenceEditorComponent,PopupCloseEventArgs,
   ResourcesDirective, ResourceDirective, ViewsDirective,ViewDirective} from '@syncfusion/ej2-react-schedule';
-import { DataManager, UrlAdaptor,WebApiAdaptor,Query} from '@syncfusion/ej2-data';
+import { DataManager, UrlAdaptor,WebApiAdaptor,Query,ReturnOption} from '@syncfusion/ej2-data';
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
-import { useRef,useState } from 'react';
+import { useRef,useState,useEffect } from 'react';
 import * as React from 'react';
 import { Ajax, L10n, loadCldr } from '@syncfusion/ej2-base';
 import * as gregorian from 'cldr-data/main/ru/ca-gregorian.json';
@@ -29,11 +29,7 @@ L10n.load(JSON.parse(localeTexts));
   const locale = useGetLocale();
   const currentLocale = locale();
 
-  const datamanagerClassroom2= new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
-   adaptor: new WebApiAdaptor(),
-  });
-  const group = { resources: ['Classrooms'] }
-  const classroomData = datamanagerClassroom2 
+  
 
 
 
@@ -54,6 +50,30 @@ L10n.load(JSON.parse(localeTexts));
   query.where('CourseName','equal',filterCourseName);
   query.where('GroupsName','equal',filterGroup);
   query.where('ClassroomName','equal',filterClassroom);
+
+  const [classroomData,setClassroomData] = useState<any[]>([]); 
+  
+
+  const group = { resources: ['Classrooms'] }
+  useEffect(() => {
+    const fetchData = async () => {
+      const datamanagerClassroom2= new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
+      adaptor: new WebApiAdaptor(),
+      });
+      const classroomQuery = new Query().where('name','equal',filterClassroom);
+  
+      try {
+        await datamanagerClassroom2.executeQuery(classroomQuery).then((e: ReturnOption) => {
+          setClassroomData(e.result as any[]); 
+      });
+        // Set the query result to the state
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [filterClassroom]);
   
 
 
