@@ -5,8 +5,28 @@ import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 import { useRef,useState } from 'react';
 import * as React from 'react';
+import { Ajax, L10n, loadCldr } from '@syncfusion/ej2-base';
+import * as gregorian from 'cldr-data/main/ru/ca-gregorian.json';
+import * as numbers from 'cldr-data/main/ru/numbers.json';
+import * as detimeZoneNames from 'cldr-data/main/ru/timeZoneNames.json';
+import * as numberingSystems from 'cldr-data/supplemental/numberingSystems.json';
+import { useTranslate,useGetLocale } from "@refinedev/core";
+
+loadCldr(numberingSystems, gregorian, numbers, detimeZoneNames);
+let localeTexts='';
+const ajax = new Ajax('./locale.json', 'GET', false);
+ajax.onSuccess = (value:any) => {
+    localeTexts = value;
+};
+ajax.send();
+L10n.load(JSON.parse(localeTexts));
+
 
  export const ScheduleView: React.FC = () => {
+  const translate = useTranslate();
+  const locale = useGetLocale();
+  const currentLocale = locale();
+
   const datamanagerClassroom2= new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
    adaptor: new WebApiAdaptor(),
   });
@@ -99,8 +119,8 @@ import * as React from 'react';
     };
     return (
       (props !== undefined ? <table className="custom-event-editor" style={{width:'90%'}} ><tbody>
-      <tr><td className="e-textlabel">Enrollment</td><td colSpan={4}>
-        <DropDownListComponent id="EnrollmentId" placeholder='Choose enrollment' name="EnrollmentId" data-name='EnrollmentId' className="e-field" style={{ width: '100%' }}
+      <tr><td className="e-textlabel">{translate("Schedule.fields.enrollment")}</td><td colSpan={4}>
+        <DropDownListComponent id="EnrollmentId" placeholder={translate("Schedule.fields.enrollment")} name="EnrollmentId" data-name='EnrollmentId' className="e-field" style={{ width: '100%' }}
           dataSource={datamanagerEnrollment}
           fields={{ text: 'name', value: 'id' }}
           value={enrollmentId || props.EnrollmentId}
@@ -108,41 +128,41 @@ import * as React from 'react';
           >
         </DropDownListComponent>
       </td></tr>
-      <tr  style={{display:"none"}}><td className="e-textlabel">Subject</td><td colSpan={4}>
+      <tr  style={{display:"none"}}><td className="e-textlabel">{translate("Schedule.fields.subject")}</td><td colSpan={4}>
         <input disabled id="Subject"  className="e-field e-input" type="text" name="Subject" 
         value={enrollmentName||props.Subject||''}
         />
       </td></tr>
-      <tr style={{display:"none"}}><td className="e-textlabel">EnrollmentName</td><td colSpan={4}>
+      <tr style={{display:"none"}}><td className="e-textlabel">{translate("Schedule.fields.enrollmentName")}</td><td colSpan={4}>
         <input disabled id="EnrollmentName"  className="e-field e-input" type="text" name="EnrollmentName"
         value={enrollmentName ||props.EnrollmentName||''}
         />
       </td></tr>
       
-      <tr ><td className="e-textlabel">Groups</td><td colSpan={4}>
+      <tr ><td className="e-textlabel">{translate("Schedule.fields.groupsName")}</td><td colSpan={4}>
         <input disabled id="GroupsName"  className="e-field e-input" type="text" name="GroupsName" 
         value={enrollmentGroups||props.GroupsName ||''}
         />
       </td></tr>
       
-      <tr ><td className="e-textlabel">Students Count</td><td colSpan={4}>
+      <tr ><td className="e-textlabel">{translate("Schedule.fields.studentCount")}</td><td colSpan={4}>
         <input disabled id="StudentCount"  className="e-field e-input" type="text" name="StudentCount" 
         value={enrollmentStudentsCount || props.StudentCount||0}
         
         />
       </td></tr>
-      <tr ><td className="e-textlabel">Course</td><td colSpan={4}>
+      <tr ><td className="e-textlabel">{translate("Schedule.fields.courseName")}</td><td colSpan={4}>
         <input disabled id="CourseName"  className="e-field e-input" type="text" name="CourseName"
         value={enrollmentCourseName || props.CourseName ||''}
         />
       </td></tr>
-      <tr ><td className="e-textlabel">Instructor</td><td colSpan={4}>
+      <tr ><td className="e-textlabel">{translate("Schedule.fields.instructorName")}</td><td colSpan={4}>
         <input disabled id="InstructorName"  className="e-field e-input" type="text" name="InstructorName"
         value={enrollmentInstructorName || props.InstructorName ||''}
         />
       </td></tr>
-      <tr><td className="e-textlabel">Classroom</td><td colSpan={4}>
-        <DropDownListComponent id="ClassroomId" placeholder='Choose classroom' data-name='ClassroomId' className="e-field" style={{ width: '100%' }}
+      <tr><td className="e-textlabel">{translate("Schedule.fields.classroom")}</td><td colSpan={4}>
+        <DropDownListComponent id="ClassroomId" placeholder={translate("Schedule.fields.classroom")} data-name='ClassroomId' className="e-field" style={{ width: '100%' }}
           dataSource={datamanagerClassroom}
           fields={{ text: 'name', value: 'id' }}
           value={classroomId || props.ClassroomId}
@@ -150,26 +170,26 @@ import * as React from 'react';
           >
         </DropDownListComponent>
       </td></tr> 
-      <tr ><td className="e-textlabel">Seats of classroom</td><td colSpan={4}>
+      <tr ><td className="e-textlabel">{translate("Schedule.fields.seats")}</td><td colSpan={4}>
         <input disabled id="SeatCount"  className="e-field e-input" type="number" name="SeatCount" 
         value={classroomSeats || props.SeatCount || 0}
         />
       </td></tr>
-      <tr><td className="e-textlabel">From</td><td colSpan={4}>
+      <tr><td className="e-textlabel">{translate("Schedule.fields.from")}</td><td colSpan={4}>
         <DateTimePickerComponent format='dd/MM/yy hh:mm a' 
         id="StartTime" 
         allowEdit={true}
         data-name="StartTime" value={new Date((props as any).startTime || (props as any).StartTime)} className="e-field"></DateTimePickerComponent>
       </td></tr>
-      <tr><td className="e-textlabel">To</td><td colSpan={4}>
+      <tr><td className="e-textlabel">{translate("Schedule.fields.to")}</td><td colSpan={4}>
         <DateTimePickerComponent format='dd/MM/yy hh:mm a' id="EndTime" 
         data-name="EndTime" value={new Date((props as any).endTime || (props as any).EndTime)} 
         className="e-field"></DateTimePickerComponent>
       </td></tr>
       <tr>
-            <td className="e-textlabel">Recurrence</td>
+            <td className="e-textlabel">{translate("Schedule.fields.recurrence")}</td>
             <td colSpan={4}>
-            <RecurrenceEditorComponent ref={recurrObject} 
+            <RecurrenceEditorComponent ref={recurrObject} locale={currentLocale==='ru'?'ru':'en'}
             data-name="RecurrenceRule" className="e-field" disabled 
             id="RecurrenceEditor">
               
@@ -187,9 +207,9 @@ import * as React from 'react';
 
   return (
     <div>
-      <h2>Schedule Viewer</h2>
+      <h2>{translate("Schedule.Schedule")}</h2>
       <ScheduleComponent 
-      
+        locale={currentLocale==='ru'?'ru':'en'}
         group={group}
         ref={scheduleObj}
         editorTemplate={editorTemplate}

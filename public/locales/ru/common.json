@@ -235,5 +235,22 @@
       "edit": "Редактировать",
       "show": "Показать"
     }
+  },
+  "Schedule":{
+    "Schedule":"Расписание",
+    "fields": {
+      "enrollment":"Регистрация",
+      "subject":"Название",
+      "enrollmentName": "Название регистрации",
+      "groupsName": "Группы",
+      "studentCount":"Кол-во студентов",
+      "courseName":"Предмет",
+      "instructorName":"Преподаватель",
+      "classroom": "Аудитория",
+      "seats": "Кол-во мест в ауд.",
+      "from": "От",
+      "to": "До",
+      "recurrence":"Повторение"
+    }
   }
 }
