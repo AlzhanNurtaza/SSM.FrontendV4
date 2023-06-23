@@ -28,15 +28,17 @@ L10n.load(JSON.parse(localeTexts));
   const translate = useTranslate();
   const locale = useGetLocale();
   const currentLocale = locale();
+  
+  const API_URL = import.meta.env.VITE_API_URL + "/api";
 
   
 
 
 
-  const datamanagerClassroom = new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
+  const datamanagerClassroom = new DataManager({ url: API_URL + '/Classroom', // Replace with your API endpoint URL
    adaptor: new WebApiAdaptor(),
   });
-  const datamanagerEnrollment = new DataManager({ url: 'https://localhost:7262/api/Enrollment', // Replace with your API endpoint URL
+  const datamanagerEnrollment = new DataManager({ url: API_URL + '/Enrollment', // Replace with your API endpoint URL
    adaptor: new WebApiAdaptor(),
   });
   //////////////////////////////////
@@ -57,7 +59,7 @@ L10n.load(JSON.parse(localeTexts));
   const group = { resources: ['Classrooms'] }
   useEffect(() => {
     const fetchData = async () => {
-      const datamanagerClassroom2= new DataManager({ url: 'https://localhost:7262/api/Classroom', // Replace with your API endpoint URL
+      const datamanagerClassroom2= new DataManager({ url: API_URL + '/Classroom', // Replace with your API endpoint URL
       adaptor: new WebApiAdaptor(),
       });
       const classroomQuery = new Query().where('name','equal',filterClassroom);
@@ -79,7 +81,7 @@ L10n.load(JSON.parse(localeTexts));
 
 
   const dataManagerSchedule = new DataManager({
-    url: 'https://localhost:7262/api/Schedule',
+    url: API_URL + '/Schedule',
     adaptor: new UrlAdaptor(),
     crossDomain: true});
 
