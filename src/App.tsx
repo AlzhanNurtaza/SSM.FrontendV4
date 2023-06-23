@@ -177,16 +177,11 @@ function App() {
                   },
                   icon:<PermContactCalendarOutlinedIcon/>
                 },
-                {
-                  name: "Schedule",
-                  list: "/schedules",
-                  create: "/schedules/create",
-                  edit: "/schedules/edit/:id",
-                  show: "/schedules/show/:id",
-                  meta: {
-                    canDelete: true,
-                  },
-                  icon:<CalendarMonthOutlinedIcon/>
+                { 
+                  name: "scheduleView", 
+                  list: () => null,
+                  //options: { label: "Schedule",route:"/scheduleView" },
+                  icon:<CalendarMonthOutlinedIcon/>,
                 },
                 {
                   name: "blog_posts",

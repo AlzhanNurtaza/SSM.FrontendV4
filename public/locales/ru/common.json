@@ -255,5 +255,8 @@
       "group":"Группа",
       "classroomName":"Аудитория"
     }
+  },
+  "scheduleView":{
+    "scheduleView":"Расписание"
   }
 }

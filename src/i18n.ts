@@ -13,6 +13,7 @@ i18n
       loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
     defaultNS: "common",
+    ns: ["common"],
     fallbackLng: ["en", "ru"],
   });
 
