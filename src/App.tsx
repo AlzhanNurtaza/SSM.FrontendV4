@@ -60,6 +60,12 @@ import {
   EnrollmentEdit
 } from "./pages/enrollments";
 import {
+  UserList,
+  UserCreate,
+  UserShow,
+  UserEdit
+} from "./pages/users";
+import {
   ScheduleView
 } from "./pages/schedules";
 import {HomePage} from "./pages/home/home";
@@ -81,6 +87,7 @@ import LivingOutlinedIcon from '@mui/icons-material/LivingOutlined';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 
 
 function App() {
@@ -182,6 +189,17 @@ function App() {
                   list: () => null,
                   icon:<CalendarMonthOutlinedIcon/>,
                 },
+                {
+                  name: "UserAuth",
+                  list: "/users",
+                  create: "/users/create",
+                  edit: "/users/edit/:id",
+                  show: "/users/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                  icon:<GroupOutlinedIcon/>
+                },
               ]}
               options={{
                 syncWithLocation: true,
@@ -252,6 +270,12 @@ function App() {
                       path="scheduleView"
                       element={<ScheduleView />}
                   />
+                  <Route path="/users">
+                    <Route index element={<UserList />} />
+                    <Route path="create" element={<UserCreate />} />
+                    <Route path="edit/:id" element={<UserEdit />} />
+                    <Route path="show/:id" element={<UserShow />} />
+                  </Route>
                   
                   <Route
                       path="homePage"

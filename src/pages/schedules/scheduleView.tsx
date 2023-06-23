@@ -16,7 +16,7 @@ registerLicense('Mgo+DSMBaFt+QHJqVEZrW05FdUBAXWFKblJ8QGJTfV9gBShNYlxTR3ZZQF9jSHt
 
 loadCldr(numberingSystems, gregorian, numbers, detimeZoneNames);
 let localeTexts='';
-const ajax = new Ajax('./locale.json', 'GET', false);
+const ajax = new Ajax(window.location.origin + '/locale.json', 'GET', false);
 ajax.onSuccess = (value:any) => {
     localeTexts = value;
 };

@@ -269,6 +269,7 @@
       "classroomName":"Аудитория"
     }
   },
+
   "scheduleView":{
     "scheduleView":"Расписание"
   },
@@ -277,6 +278,27 @@
     "fields":{
       "title":"Успешно",
       "content":"Это проект Student Schedule Management (SSM)— пройдите по меню"
+    }
+  },
+  "UserAuth":{
+    "UserAuth":"Пользователи",
+    "fields": {
+      "id":"Id",
+      "email":"Email",
+      "firstName":"Имя",
+      "lastName": "Фамилия",
+      "middleName": "Отчество",
+      "iin":"ИИН",
+      "department":"Департамент",
+      "image":"Фото",
+      "emailConfirmed": "Активна",
+      "role": "Роль"
+    },
+    "titles":{
+      "list": "Пользователи",
+      "create": "Создать",
+      "edit": "Редактировать",
+      "show": "Показать"
     }
   }
 }

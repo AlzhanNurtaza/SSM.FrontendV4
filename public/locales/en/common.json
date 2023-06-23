@@ -261,5 +261,26 @@
       "title":"Success",
       "content":"This is Student Schedule Management (SSM) project — check it out!"
     }
+  },
+  "UserAuth":{
+    "UserAuth":"Users",
+    "fields": {
+      "id":"Id",
+      "email":"Email",
+      "firstName":"First Name",
+      "lastName": "Last Name",
+      "middleName": "Middle Name",
+      "iin":"IIN",
+      "department":"Department",
+      "image":"Photo",
+      "emailConfirmed": "Activated",
+      "role": "Role"
+    },
+    "titles":{
+      "list": "Users",
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show"
+    }
   }
 }
