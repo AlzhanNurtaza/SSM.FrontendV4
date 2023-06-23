@@ -65,10 +65,12 @@ import {
 import {HomePage} from "./pages/home/home";
 import "./App.css";
 
+import { ToastContainer } from 'react-toastify';
+
 import { ForgotPassword } from "./pages/forgotPassword";
-//import { Login } from "./pages/login";
-import { AuthPage } from "./components/pages/auth";
+import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import { UpdatePassword } from "./pages/updatePassword";
 
 
 import RoomPreferencesOutlinedIcon from '@mui/icons-material/RoomPreferencesOutlined';
@@ -79,6 +81,7 @@ import LivingOutlinedIcon from '@mui/icons-material/LivingOutlined';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -185,6 +188,7 @@ function App() {
                 warnWhenUnsavedChanges: true,
               }}
             >
+              <ToastContainer />
               <Routes>
                 <Route
                   element={
@@ -248,10 +252,12 @@ function App() {
                       path="scheduleView"
                       element={<ScheduleView />}
                   />
+                  
                   <Route
                       path="homePage"
                       element={<HomePage />}
                   />
+                  
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
                 <Route
@@ -261,9 +267,13 @@ function App() {
                     </Authenticated>
                   }
                 >
-                  <Route path="/login" element={<AuthPage type="login" />} />
+                  <Route path="/login" element={<Login/>} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route
+                            path="/update-password"
+                            element={<UpdatePassword />}
+                  />
                 </Route>
               </Routes>
 

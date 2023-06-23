@@ -1,7 +1,6 @@
 import { useForm } from "@refinedev/react-hook-form";
 import * as React from "react";
 import {
-  UpdatePasswordFormTypes,
   UpdatePasswordPageProps,
   useActiveAuthProvider,
   BaseRecord,
@@ -21,6 +20,12 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import type { BoxProps } from "@mui/material/Box";
 import type { CardContentProps } from "@mui/material/CardContent";
+
+export interface UpdatePasswordFormTypes {
+  password?: string;
+  email?:string;
+  token?: string;
+}
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
   BoxProps,
@@ -42,7 +47,6 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
   const { onSubmit, ...useFormProps } = formProps || {};
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<BaseRecord, HttpError, UpdatePasswordFormTypes>({
@@ -68,7 +72,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         }}
       >
         {title ?? (
-          <ThemedTitle
+          <ThemedTitleV2
             collapsed={false}
             wrapperStyles={{
               gap: "8px",
@@ -102,6 +106,22 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
           })}
         >
           <TextField
+            {...register("email", {
+              required: true,
+            })}
+            id="email"
+            margin="normal"
+            fullWidth
+            label={translate("pages.login.fields.email", "Email")}
+            error={!!errors.email}
+            name="email"
+            type="email"
+            autoComplete="email"
+            sx={{
+              mt: 0,
+            }}
+          />
+          <TextField
             {...register("password", {
               required: true,
             })}
@@ -124,31 +144,20 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
           />
 
           <TextField
-            {...register("confirmPassword", {
+            {...register("token", {
               required: true,
-              validate: (value?: string) => {
-                if (watch("password") !== value) {
-                  return translate(
-                    "pages.updatePassword.errors.confirmPasswordNotMatch",
-                    "Passwords do not match"
-                  );
-                }
-                return true;
-              },
             })}
-            id="confirmPassword"
+            id="token"
             margin="normal"
             fullWidth
-            name="confirmPassword"
+            name="token"
             label={translate(
-              "pages.updatePassword.fields.confirmPassword",
-              "Confirm New Password"
+              "pages.updatePassword.fields.token",
+              "Token"
             )}
-            helperText={errors?.confirmPassword?.message}
-            error={!!errors?.confirmPassword}
-            type="password"
-            placeholder="●●●●●●●●"
-            autoComplete="current-confirm-password"
+            helperText={errors?.token?.message}
+            error={!!errors?.token}
+            type="text"
             sx={{
               mb: 0,
             }}

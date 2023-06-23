@@ -12,21 +12,38 @@ export const TOKEN_KEY = import.meta.env.VITE_TOKEN_KEY + "";
 export const authProvider: AuthBindings = {
 
   login: async ({ username, email, password }) => {
-    if ((username || email) && password) {
-      localStorage.setItem(TOKEN_KEY, username);
-      return {
-        success: true,
-        redirectTo: "/",
+     // ---
+     try{
+      const response = await axios.post(API_URL + "/Login", {email,password})
+      const accessToken = response?.data?.token;
+      if(accessToken)
+      {
+        localStorage.setItem(TOKEN_KEY, accessToken);
+        localStorage.setItem("user", JSON.stringify(response?.data?.user));
+              return {
+                  success: true,
+                  redirectTo: "/",
+              };
+      }
+      else{
+        return {
+          success: false,
+          error: {
+              message: "Login Error",
+              name: "Invalid email or password",
+          },
       };
+      }
     }
-
-    return {
-      success: false,
-      error: {
-        name: "LoginError",
-        message: "Invalid username or password",
-      },
+    catch(error){
+      return {
+        success: false,
+        error: {
+            message: "Login Error",
+            name: "Invalid email or password",
+        },
     };
+    }  
   },
   logout: async () => {
     localStorage.removeItem(TOKEN_KEY);
@@ -108,4 +125,56 @@ export const authProvider: AuthBindings = {
     }
   },
   // ---
+  forgotPassword: async ({ email }) => {
+    try {
+      await axios.post(API_URL + "/PasswordForgot", {email});
+      toast.success('Password reset token were sent to your Email', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+      return {success: true, redirectTo:"/update-password"};
+    }
+    catch(error)
+    {
+      return {
+        success: false,
+        error: {
+            name: "Forgot Password Error",
+            message: "Invalid email",
+        },
+      };
+    }
+  },
+  updatePassword: async ({ email,password, token}) => {
+    try {
+      await axios.post(API_URL + "/PasswordReset", {email, password,token});
+      toast.success('Your password updated', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+      return {success: true, redirectTo:"/login"};
+    }
+    catch(error){
+      return {
+        success: false,
+        error: {
+            name: "Update Password Error",
+            message: "Invalid email",
+        },
+      };
+    }
+
+  },
 };

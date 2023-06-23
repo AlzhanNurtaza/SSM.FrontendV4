@@ -30,6 +30,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import type { BoxProps } from "@mui/material/Box";
 import type { CardContentProps } from "@mui/material/CardContent";
+import {Header} from "../../../../components/header";
 
 type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 
@@ -285,6 +286,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   return (
     <FormProvider {...methods}>
       <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
+        <Header/>
         <Container
           component="main"
           maxWidth="xs"
