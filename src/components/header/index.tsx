@@ -17,8 +17,9 @@ import { ColorModeContext } from "../../contexts/color-mode";
 
 type IUser = {
   id: number;
-  name: string;
-  avatar: string;
+  lastName: string;
+  firstName:string;
+  image: string;
 };
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
@@ -105,14 +106,14 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
             </IconButton>
 
-            {(user?.avatar || user?.name) && (
+            {(user?.image || user?.lastName) && (
               <Stack
                 direction="row"
                 gap="16px"
                 alignItems="center"
                 justifyContent="center"
               >
-                {user?.name && (
+                {user?.lastName && (
                   <Typography
                     sx={{
                       display: {
@@ -122,10 +123,10 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     }}
                     variant="subtitle2"
                   >
-                    {user?.name}
+                    {user?.lastName} {user?.firstName}
                   </Typography>
                 )}
-                <Avatar src={user?.avatar} alt={user?.name} />
+                <Avatar src={user?.image} alt={user?.lastName} />
               </Stack>
             )}
           </Stack>

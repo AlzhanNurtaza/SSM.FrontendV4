@@ -67,13 +67,9 @@ export const authProvider: AuthBindings = {
   },
   getPermissions: async () => null,
   getIdentity: async () => {
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (token) {
-      return {
-        id: 1,
-        name: "John Doe",
-        avatar: "https://i.pravatar.cc/300",
-      };
+    const user = JSON.parse((localStorage.getItem("user") + ""));
+    if(user!=null) {
+      return user;
     }
     return null;
   },
@@ -154,7 +150,7 @@ export const authProvider: AuthBindings = {
   updatePassword: async ({ email,password, token}) => {
     try {
       await axios.post(API_URL + "/PasswordReset", {email, password,token});
-      toast.success('Your password updated', {
+      toast.success('Your password update', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
