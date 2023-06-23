@@ -66,8 +66,10 @@ import {HomePage} from "./pages/home/home";
 import "./App.css";
 
 import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
+//import { Login } from "./pages/login";
+import { AuthPage } from "./components/pages/auth";
 import { Register } from "./pages/register";
+
 
 import RoomPreferencesOutlinedIcon from '@mui/icons-material/RoomPreferencesOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
@@ -259,7 +261,7 @@ function App() {
                     </Authenticated>
                   }
                 >
-                  <Route path="/login" element={<Login />} />
+                  <Route path="/login" element={<AuthPage type="login" />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                 </Route>

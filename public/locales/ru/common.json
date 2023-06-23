@@ -1,75 +1,88 @@
 {
   "pages": {
     "login": {
-      "title": "Sign in to your account",
-      "signin": "Sign in",
-      "signup": "Sign up",
-      "divider": "or",
+      "title": "Вход в аккаунт",
+      "signin": "Авторизация",
+      "signup": "Регистрация",
+      "divider": "или",
       "fields": {
         "email": "Email",
-        "password": "Password"
+        "password": "Пароль"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Неправильный Email",
+        "loginErrorName": "Неправильный Email или пароль",
+        "loginErrorMessage":"Ошибка авторизации"
       },
       "buttons": {
-        "submit": "Login",
-        "forgotPassword": "Forgot password?",
-        "noAccount": "Don’t have an account?",
-        "rememberMe": "Remember me"
+        "submit": "Вход",
+        "forgotPassword": "Забыли пароль?",
+        "noAccount": "У вас нет учетной записи?",
+        "rememberMe": "Запомнить меня",
+        "haveAccount": "У вас уже имеется учетная запись?"
       }
     },
     "forgotPassword": {
-      "title": "Forgot your password?",
+      "title": "Забыли пароль?",
       "fields": {
         "email": "Email"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Неправильный Email"
       },
       "buttons": {
-        "submit": "Send reset instructions"
+        "submit": "Отправить инструкцию для сброса"
       }
     },
     "register": {
-      "title": "Sign up for your account",
+      "signup" : "Регистрация",
+      "title": "Регистрация",
       "fields": {
         "email": "Email",
-        "password": "Password"
+        "password": "Пароль",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "middleName": "Отчество",
+        "department":"Департамент",
+        "image":"Фото",
+        "iin" : "ИИН"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Неправильный Email",
+        "requiredField":"Обязательное поле",
+        "IINNotCorrent":"Формат ИИН неправльный"
       },
       "buttons": {
-        "submit": "Register",
-        "haveAccount": "Have an account?"
+        "submit": "Зарегистрироваться",
+        "haveAccount": "У меня уже есть аккаунт?",
+        "upload":"Загрузить фото"       
       }
     },
     "updatePassword": {
-      "title": "Update password",
+      "title": "Обновить пароль",
       "fields": {
-        "password": "New Password",
-        "confirmPassword": "Confirm new password"
+        "password": "Новый пароль",
+        "token": "Токен"
       },
       "errors": {
-        "confirmPasswordNotMatch": "Passwords do not match"
+        "confirmPasswordNotMatch": "Пароль не совпадает"
       },
       "buttons": {
-        "submit": "Update"
+        "submit": "Обновить"
       }
     },
     "error": {
-      "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
-      "404": "Sorry, the page you visited does not exist.",
-      "resource404": "Are you sure you have created the {{resource}} resource.",
-      "backHome": "Back Home"
+      "info": "Возможно, вы забыли добавить компонент {{action}} в ресурс {{resource}}.",
+      "404": "Запрашивая страница не существует",
+      "resource404": "Вы уверены, что создали ресурс {{resource}}.",
+      "backHome": "Назад домой"
     }
   },
   "actions": {
-    "list": "List",
-    "create": "Create",
-    "edit": "Edit",
-    "show": "Show"
+    "list": "Список",
+    "create": "Создать",
+    "edit": "Редактировать",
+    "show": "Показать"
   },
   "buttons": {
     "create": "Создать",

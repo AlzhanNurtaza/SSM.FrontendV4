@@ -1,5 +1,6 @@
-import { AuthPage, ThemedTitleV2 } from "@refinedev/mui";
+import { ThemedTitleV2 } from "@refinedev/mui";
 import { AppIcon } from "../../components/app-icon";
+import { AuthPage } from "../../components/pages/auth";
 
 export const Login = () => {
   return (
@@ -13,7 +14,7 @@ export const Login = () => {
         />
       }
       formProps={{
-        defaultValues: { email: "demo@refine.dev", password: "demodemo" },
+        defaultValues: { email: "student@gmail.com", password: "password" },
       }}
     />
   );
