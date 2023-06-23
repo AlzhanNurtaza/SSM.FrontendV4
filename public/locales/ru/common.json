@@ -258,5 +258,12 @@
   },
   "scheduleView":{
     "scheduleView":"Расписание"
+  },
+  "homePage":{
+    "homePage":"Главная",
+    "fields":{
+      "title":"Успешно",
+      "content":"Это проект Student Schedule Management (SSM)— пройдите по меню"
+    }
   }
 }

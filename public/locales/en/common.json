@@ -254,5 +254,12 @@
       "group":"Group",
       "classroomName":"Classroom"
     }
+  },
+  "homePage":{
+    "homePage":"Home",
+    "fields":{
+      "title":"Success",
+      "content":"This is Student Schedule Management (SSM) project — check it out!"
+    }
   }
 }

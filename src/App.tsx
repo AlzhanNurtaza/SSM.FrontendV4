@@ -74,6 +74,7 @@ import {
 import {
   ScheduleView
 } from "./pages/schedules";
+import {HomePage} from "./pages/home/home";
 import "./App.css";
 
 import { ForgotPassword } from "./pages/forgotPassword";
@@ -87,6 +88,7 @@ import RecentActorsOutlinedIcon from '@mui/icons-material/RecentActorsOutlined';
 import LivingOutlinedIcon from '@mui/icons-material/LivingOutlined';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -111,6 +113,11 @@ function App() {
               i18nProvider={i18nProvider}
               routerProvider={routerBindings}
               resources={[
+                { 
+                  name: "homePage", 
+                  list: () => null,
+                  icon:<HomeOutlinedIcon/>,
+                },
                 {
                   name: "Department",
                   list: "/departments",
@@ -180,7 +187,6 @@ function App() {
                 { 
                   name: "scheduleView", 
                   list: () => null,
-                  //options: { label: "Schedule",route:"/scheduleView" },
                   icon:<CalendarMonthOutlinedIcon/>,
                 },
                 {
@@ -230,7 +236,7 @@ function App() {
                 >
                   <Route
                     index
-                    element={<NavigateToResource resource="blog_posts" />}
+                    element={<NavigateToResource resource="homePage" />}
                   />
                   <Route path="/departments">
                     <Route index element={<DepartmentList />} />
@@ -269,9 +275,13 @@ function App() {
                     <Route path="show/:id" element={<EnrollmentShow />} />
                   </Route>
                   <Route
-                                path="scheduleView"
-                                element={<ScheduleView />}
-                            />
+                      path="scheduleView"
+                      element={<ScheduleView />}
+                  />
+                  <Route
+                      path="homePage"
+                      element={<HomePage />}
+                  />
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
