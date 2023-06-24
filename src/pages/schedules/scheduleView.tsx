@@ -33,6 +33,16 @@ L10n.load(JSON.parse(localeTexts));
   const currentLocale = locale();
   
   const API_URL = import.meta.env.VITE_API_URL + "/api";
+  let role="";
+  const user = JSON.parse((localStorage.getItem("user") + ""));
+    if(user!=null) {
+      role =user.role;
+    }
+  let isReadonly = false;
+  if(role=="Student" || role=="Instructor")
+  {
+    isReadonly=true;
+  }
 
   
 
@@ -283,6 +293,7 @@ L10n.load(JSON.parse(localeTexts));
       <input  className=" e-input" type="text" name="InstructorName" placeholder={translate("Schedule.fields.instructorName")}
       value={filterInstructorName}
       onChange={e=>setFilterInstructorName(e.target.value)}
+      style={{background: "azure"}}
         />
       </td></tr>
       <tr>
@@ -290,6 +301,7 @@ L10n.load(JSON.parse(localeTexts));
       <input  className="e-input" type="text" name="CourseName" placeholder={translate("Schedule.fields.courseName")}
       value={filterCourseName}
       onChange={e=>setFilterCourseName(e.target.value)}
+      style={{background: "azure"}}
         />
       </td></tr>
       <tr>
@@ -297,6 +309,7 @@ L10n.load(JSON.parse(localeTexts));
       <input  className="e-input" type="text" name="Group" placeholder={translate("Schedule.fields.group")}
       value={filterGroup}
       onChange={e=>setFilterGroup(e.target.value)}
+      style={{background: "azure"}}
         />
       </td></tr>
       <tr>
@@ -304,10 +317,12 @@ L10n.load(JSON.parse(localeTexts));
       <input  className="e-input" type="text" name="ClassroomName" placeholder={translate("Schedule.fields.classroomName")}
       value={filterClassroom}
       onChange={e=>setFilterClassroom(e.target.value)}
+      style={{background: "azure"}}
         />
       </td></tr>
       </tbody></table>
       <ScheduleComponent 
+        readonly={isReadonly}
         locale={currentLocale==='ru'?'ru':'en'}
         group={group}
         ref={scheduleObj}

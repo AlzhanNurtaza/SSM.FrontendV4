@@ -111,6 +111,10 @@ p, Student, enrollment, list
 p, Student, Enrollment, (list)
 p, Student, Enrollment/*, (show)
 
+p, Student, scheduleview, list
+p, Student, scheduleView, (list)
+p, Student, scheduleView/*, (show)
+
 
 p, Student, homepage, list
 p, Student, homePage, (list)
