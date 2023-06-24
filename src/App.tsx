@@ -89,8 +89,30 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 
+import axios from "axios";
+
+
+const axiosInstance:any = axios.create();
+
 
 function App() {
+  axiosInstance.interceptors.request.use((request: any) => {
+    // Retrieve the token from local storage
+    const token = localStorage.getItem("ssm-auth");
+    // Check if the header property exists
+    if (request.headers) {
+        // Set the Authorization header if it exists
+        request.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+        // Create the headers property if it does not exist
+        request.headers = {
+            Authorization: `Bearer ${token}`,
+        };
+    }
+  
+    return request;
+  });
+
   const { t, i18n } = useTranslation();
 
   const i18nProvider = {
@@ -107,7 +129,7 @@ function App() {
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
           <RefineSnackbarProvider>
             <Refine
-              dataProvider={dataProvider("https://localhost:7262/api")}
+              dataProvider={dataProvider("https://localhost:7262/api", axiosInstance)}
               notificationProvider={notificationProvider}
               authProvider={authProvider}
               i18nProvider={i18nProvider}
