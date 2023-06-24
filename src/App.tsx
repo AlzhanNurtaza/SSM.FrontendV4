@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, Refine ,CanAccess} from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import {
@@ -91,6 +91,11 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 
 import axios from "axios";
 
+import { newEnforcer } from "casbin";
+
+import { model, adapter } from "./accessControl";
+import { useState } from "react";
+
 
 const axiosInstance:any = axios.create();
 
@@ -120,7 +125,12 @@ function App() {
     changeLocale: (lang: string) => i18n.changeLanguage(lang),
     getLocale: () => i18n.language,
   };
-
+  let role="";
+  const user = JSON.parse((localStorage.getItem("user") + ""));
+    if(user!=null) {
+      role =user.role;
+    }
+  
   return (
     <BrowserRouter>
       <RefineKbarProvider>
@@ -130,6 +140,40 @@ function App() {
           <RefineSnackbarProvider>
             <Refine
               dataProvider={dataProvider("https://localhost:7262/api", axiosInstance)}
+              accessControlProvider={{
+                  can: async ({ action, params, resource }) => {
+                      const enforcer = await newEnforcer(model, adapter);
+                      if (
+                          action === "delete" ||
+                          action === "edit" ||
+                          action === "show"
+                      ) {
+                          return Promise.resolve({
+                              can: await enforcer.enforce(
+                                  role,
+                                  `${resource}/${params?.id}`,
+                                  action,
+                              ),
+                          });
+                      }
+                      if (action === "field") {
+                          return Promise.resolve({
+                              can: await enforcer.enforce(
+                                  role,
+                                  `${resource}/${params?.field}`,
+                                  action,
+                              ),
+                          });
+                      }
+                      return {
+                          can: await enforcer.enforce(
+                              role,
+                              resource,
+                              action,
+                          ),
+                      };
+                  },
+              }}
               notificationProvider={notificationProvider}
               authProvider={authProvider}
               i18nProvider={i18nProvider}
@@ -243,7 +287,8 @@ function App() {
                           />
                         )}
                       >
-                        <Outlet />
+                        <CanAccess><Outlet /></CanAccess>
+                        
                       </ThemedLayoutV2>
                     </Authenticated>
                   }
