@@ -4,6 +4,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import React, { useEffect } from 'react';
 import { Controller } from "react-hook-form";
+import { Query } from "@syncfusion/ej2-data";
 
 export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -21,6 +22,13 @@ export const GroupCreate: React.FC<IResourceComponentsProps> = () => {
       });
     const { autocompleteProps: studentAutocompleteProps } = useAutocomplete({
         resource: "UserAuth",
+        filters: [
+            {
+                field: "role",
+                operator: "eq",
+                value: "Student",
+            },
+        ],
      });
   
 

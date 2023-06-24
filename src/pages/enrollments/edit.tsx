@@ -24,6 +24,13 @@ export const EnrollmentEdit: React.FC<IResourceComponentsProps> = () => {
       });
       const { autocompleteProps: instructorAutocompleteProps } = useAutocomplete({
         resource: "UserAuth",
+        filters: [
+            {
+                field: "role",
+                operator: "eq",
+                value: "Instructor",
+            },
+        ],
       });
       const { autocompleteProps: groupAutocompleteProps } = useAutocomplete({
         resource: "Group",
