@@ -65,7 +65,13 @@ export const authProvider: AuthBindings = {
       redirectTo: "/login",
     };
   },
-  getPermissions: async () => null,
+  getPermissions: async () => {
+    const user = JSON.parse((localStorage.getItem("user") + ""));
+    if(user!=null) {
+      return [user.role];
+    }
+    return null;
+  },
   getIdentity: async () => {
     const user = JSON.parse((localStorage.getItem("user") + ""));
     if(user!=null) {
