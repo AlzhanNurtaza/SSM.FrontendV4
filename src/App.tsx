@@ -140,44 +140,44 @@ function App() {
           <RefineSnackbarProvider>
             <Refine
               dataProvider={dataProvider("https://localhost:7262/api", axiosInstance)}
-              accessControlProvider={{
-                  can: async ({ action, params, resource }) => {
-                      const enforcer = await newEnforcer(model, adapter);
-                      if (
-                          action === "delete" ||
-                          action === "edit" ||
-                          action === "show"
-                      ) {
-                          return Promise.resolve({
-                              can: await enforcer.enforce(
-                                  role,
-                                  `${resource}/${params?.id}`,
-                                  action,
-                              ),
-                          });
-                      }
-                      if (action === "field") {
-                          return Promise.resolve({
-                              can: await enforcer.enforce(
-                                  role,
-                                  `${resource}/${params?.field}`,
-                                  action,
-                              ),
-                          });
-                      }
-                      return {
-                          can: await enforcer.enforce(
-                              role,
-                              resource,
-                              action,
-                          ),
-                      };
-                  },
-              }}
               notificationProvider={notificationProvider}
               authProvider={authProvider}
               i18nProvider={i18nProvider}
               routerProvider={routerBindings}
+              accessControlProvider={{
+                can: async ({ action, params, resource }) => {
+                    const enforcer = await newEnforcer(model, adapter);
+                    if (
+                        action === "delete" ||
+                        action === "edit" ||
+                        action === "show"
+                    ) {
+                        return Promise.resolve({
+                            can: await enforcer.enforce(
+                                role,
+                                `${resource}/${params?.id}`,
+                                action,
+                            ),
+                        });
+                    }
+                    if (action === "field") {
+                        return Promise.resolve({
+                            can: await enforcer.enforce(
+                                role,
+                                `${resource}/${params?.field}`,
+                                action,
+                            ),
+                        });
+                    }
+                    return {
+                        can: await enforcer.enforce(
+                            role,
+                            resource,
+                            action,
+                        ),
+                    };
+                },
+            }}
               resources={[
                 { 
                   name: "homePage", 
