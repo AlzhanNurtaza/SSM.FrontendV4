@@ -226,7 +226,8 @@
       "groups":"Groups",
       "course":"Course",
       "instructor":"Instructor",
-      "name": "Name"
+      "name": "Name",
+      "studyCount": "Total in mins"
     },
     "titles":{
       "list": "Регистрации",

@@ -87,6 +87,15 @@ export const EnrollmentList: React.FC<IResourceComponentsProps> = () => {
                 filterable: false
             },
             {
+                field: "studyCount",
+                flex: 1,
+                headerName: translate("Enrollment.fields.studyCount"),
+                type: "number",
+                minWidth: 50,
+                sortable: false,
+                filterable: false
+            },
+            {
                 field: "instructor",
                 flex: 1,
                 headerName: translate("Enrollment.fields.instructor"),

@@ -41,15 +41,19 @@ export const EnrollmentEdit: React.FC<IResourceComponentsProps> = () => {
       const termValue=watch('term');
 
       const textFieldValue = courseValue?.code +'-'+(new Date(startDateValue)).getFullYear() +'-'+ termValue;
+      const studyCountCalc = courseValue!==null?courseValue?.creditCount * 30 * 50:0;
       
 
       useEffect(() => {
                 setValue('name', textFieldValue); // Set the value manually
-            }, [textFieldValue, setValue]);
+                if(studyCountCalc>0)
+                    setValue('studyCount',studyCountCalc);
+            }, [textFieldValue, setValue,studyCountCalc]);
 
     const enrollmentData = queryResult?.data?.data;
     const startDate = dayjs(new Date(enrollmentData?.startDate));
     const endDate = dayjs(enrollmentData?.endDate);
+    
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -180,6 +184,22 @@ export const EnrollmentEdit: React.FC<IResourceComponentsProps> = () => {
                             )}
                         />
                     )}
+                />
+                <TextField
+                    {...register("studyCount", {
+                        required: "This field is required",
+                        valueAsNumber: true,
+                    })}
+                    error={!!(errors as any)?.studyCount}
+                    helperText={(errors as any)?.studyCount?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="number"
+                    label={translate("Enrollment.fields.studyCount")}
+                    name="studyCount"
+                    inputProps={{min:1}}
+                    disabled
                 />
                 <Controller
                     control={control}
