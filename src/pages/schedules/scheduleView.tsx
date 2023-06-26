@@ -292,7 +292,9 @@ L10n.load(JSON.parse(localeTexts));
       <td colSpan={4}>
       <input  className=" e-input" type="text" name="InstructorName" placeholder={translate("Schedule.fields.instructorName")}
       value={filterInstructorName}
-      onChange={e=>setFilterInstructorName(e.target.value)}
+      onChange={e=>{
+        console.log('filterInstructorName',e.target.value);
+        setFilterInstructorName(e.target.value)}}
       style={{background: "azure"}}
         />
       </td></tr>
@@ -300,7 +302,9 @@ L10n.load(JSON.parse(localeTexts));
       <td colSpan={4}>
       <input  className="e-input" type="text" name="CourseName" placeholder={translate("Schedule.fields.courseName")}
       value={filterCourseName}
-      onChange={e=>setFilterCourseName(e.target.value)}
+      onChange={e=>{
+        console.log('filterCourseName',e.target.value);
+        setFilterCourseName(e.target.value)}}
       style={{background: "azure"}}
         />
       </td></tr>
@@ -308,7 +312,9 @@ L10n.load(JSON.parse(localeTexts));
       <td colSpan={4}>
       <input  className="e-input" type="text" name="Group" placeholder={translate("Schedule.fields.group")}
       value={filterGroup}
-      onChange={e=>setFilterGroup(e.target.value)}
+      onChange={e=>{
+        console.log('filterGroup',e.target.value);
+        setFilterGroup(e.target.value)}}
       style={{background: "azure"}}
         />
       </td></tr>
@@ -316,7 +322,9 @@ L10n.load(JSON.parse(localeTexts));
       <td colSpan={4}>
       <input  className="e-input" type="text" name="ClassroomName" placeholder={translate("Schedule.fields.classroomName")}
       value={filterClassroom}
-      onChange={e=>setFilterClassroom(e.target.value)}
+      onChange={e=>{
+        console.log('filterClassroom',e.target.value);
+        setFilterClassroom(e.target.value)}}
       style={{background: "azure"}}
         />
       </td></tr>
