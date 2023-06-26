@@ -156,7 +156,7 @@ export const authProvider: AuthBindings = {
   },
   updatePassword: async ({ email,password, token}) => {
     try {
-      await axios.post(API_URL + "/PasswordReset", {email, password,token});
+      const response = await axios.post(API_URL + "/PasswordReset", {email, password,token});
       toast.success('Your password update', {
         position: "top-right",
         autoClose: 5000,
@@ -167,14 +167,15 @@ export const authProvider: AuthBindings = {
         progress: undefined,
         theme: "colored",
         });
+        
       return {success: true, redirectTo:"/login"};
     }
-    catch(error){
+    catch(error:any){
       return {
         success: false,
         error: {
             name: "Update Password Error",
-            message: "Invalid email",
+            message: error.response.data.error,
         },
       };
     }
