@@ -338,16 +338,19 @@ L10n.load(JSON.parse(localeTexts));
         popupOpen={onPopupOpen}
         popupClose={onPopupClose}
         
-        height='550px' selectedDate={new Date()}
+        height='600px' selectedDate={new Date()}
         eventSettings={ { 
         dataSource : dataManagerSchedule,
         query:query
         } }
-
+        startHour="08:00"
+        endHour="20:00"
+        
         >
+          
           <ViewsDirective>
-            <ViewDirective option="Week" />
-            <ViewDirective option="Day" />
+            <ViewDirective option="Week"    workDays={[0, 1, 2, 3, 6]} />
+            <ViewDirective option="Day"      workDays={[0, 1, 2, 3, 6]}/>
         </ViewsDirective>
         <Inject services={[Day, Week ]} />
         <ResourcesDirective>
