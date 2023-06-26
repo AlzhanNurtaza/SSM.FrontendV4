@@ -8,6 +8,13 @@ import {
 } from "@refinedev/mui";
 import { DataGrid, GridColDef,ruRU,getGridStringOperators  } from "@mui/x-data-grid";
 import { IResourceComponentsProps, useTranslate,useGetLocale } from "@refinedev/core";
+import AlarmIcon from '@mui/icons-material/Alarm';
+import IconButton from '@mui/material/IconButton';
+import axios, { AxiosRequestConfig }  from "axios";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const API_URL = import.meta.env.VITE_API_URL + "/api/Schedule";
 
 export const EnrollmentList: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -15,6 +22,40 @@ export const EnrollmentList: React.FC<IResourceComponentsProps> = () => {
     const locale = useGetLocale();
     const currentLocale = locale();
     const filterOperators = getGridStringOperators().filter(({ value }) =>['contains'].includes(value));
+
+    const  scheduleButtonClick = async (id:string) => {
+        try {
+            const token = localStorage.getItem("ssm-auth");
+            const headers: AxiosRequestConfig['headers'] = {
+                Authorization: `Bearer ${token}`
+              };
+            
+            const response = await axios.post(API_URL + "/createAuto", {id},{headers});
+            toast.success(response?.data?.message || "Расписание создано", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              });
+          }
+          catch(error:any){
+            toast.error(error.response.data.error??"Невозможно создать расписание", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+          }
+      
+    }
 
 
     const columns = React.useMemo<GridColDef[]>(
@@ -132,6 +173,9 @@ export const EnrollmentList: React.FC<IResourceComponentsProps> = () => {
                         <>
                             <EditButton hideText recordItemId={row.id} />
                             <ShowButton hideText recordItemId={row.id} />
+                            <IconButton color="secondary" aria-label="add an alarm" onClick={()=>{scheduleButtonClick(row.id)}}>
+                                <AlarmIcon />
+                            </IconButton>
                         </>
                     );
                 },
